@@ -26,13 +26,22 @@ Scene::Scene(GLFWwindow* window)
 		-1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 		1.2f, 0.5f, 2.5f, 1.0f, 1.3f, -0.4f 
 	};
-	
-	scene1.SetVertices(s1a_vert);
+
+	scene1a.SetVertices(s1a_vert);
+
+	std::vector<float> s1b_vert = {
+		1.0f, 1.0f, 4.0f, 0.0f, 6.0f, 2.0f, 9.0f, 1.0f,
+		8.0f, 2.0f, 0.0f, 8.0f, 0.0f, -2.0f, 8.0f, 4.0f,
+		5.0f, 3.0f, 3.0f, 2.0f, 3.0f, 3.0f, 5.0f, 2.0f,
+		3.0f, 2.2f, 3.5f, 2.7f, 3.5f, 3.3f, 3.0f, 3.8f,
+		2.8f, 3.5f, 2.4f, 3.8f, 2.4f, 3.2f, 2.8f, 3.5f
+	};
+
 }
 
 
 void Scene::Render()
 {
-	scene1.Draw(shaders[0].program);
+	scene1a.Draw(shaders[0].program);
 }
 

@@ -22,7 +22,8 @@ private:
 	std::vector<Image> images;
 	std::vector<glm::vec4> grays;
 
-	BezierCurve scene1;
+	BezierCurve scene1a;
+	BezierCurve scene1b;
 
 	std::vector <float*> smat;
 	glm::vec2 curPos = { 0.0f, 0.0f };

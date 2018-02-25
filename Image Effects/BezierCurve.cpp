@@ -57,10 +57,11 @@ void BezierCurve::Draw(const GLuint& program) const
 
 	glUseProgram(program);
 
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	const float* fsrt = (const float*)glm::value_ptr(CreateTransMatrix());
+	// am I leaking memory here?
+	float* fsrt = (float*)glm::value_ptr(CreateTransMatrix());
 	glUniformMatrix4fv(glGetUniformLocation(program, "srt"), 1, false, fsrt);
 
 	glPatchParameteri(GL_PATCH_VERTICES, 3);
@@ -75,4 +76,9 @@ void BezierCurve::SetVertices(const std::vector<float>& vertices)
 {
 	this->vertices = vertices;
 	InitializeGeometry(vertices);
+}
+
+void BezierCurve::SetIsCubic(bool tf)
+{
+	isCubic = tf;
 }
