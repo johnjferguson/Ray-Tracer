@@ -8,22 +8,26 @@
 #include <fstream>
 
 // load, compile, and link shaders, returning true if successful
-bool InitializeShaders(MyShader *shader, const std::string& vs, const std::string& fs)
+bool InitializeShaders(MyShader *shader, const std::string& vs, const std::string& fs, const std::string& tc, const std::string& te)
 {
 	// load shader source from files
 	std::string vertexSource = LoadSource(vs.c_str());
 	std::string fragmentSource = LoadSource(fs.c_str());
-	if (vertexSource.empty() || fragmentSource.empty()) return false;
+	std::string tcsSource = LoadSource(tc.c_str());
+	std::string tesSource = LoadSource(te.c_str());
+	
+	if (vertexSource.empty() || fragmentSource.empty()) return 0;
 
 	// compile shader source into shader objects
 	shader->vertex = CompileShader(GL_VERTEX_SHADER, vertexSource);
 	shader->fragment = CompileShader(GL_FRAGMENT_SHADER, fragmentSource);
+	shader->tcs = CompileShader(GL_TESS_CONTROL_SHADER, tcsSource);
+	shader->tes = CompileShader(GL_TESS_EVALUATION_SHADER, tesSource);
 
 	// link shader program
-	shader->program = LinkProgram(shader->vertex, shader->fragment);
-
-	// check for OpenGL errors and return false if error occurred
-	return !CheckGLShaderErrors();
+	shader->program = LinkProgram(shader->vertex, shader->fragment, shader->tcs, shader->tes);
+	
+	return CheckGLShaderErrors();
 }
 
 // deallocate shader-related objects
@@ -111,7 +115,7 @@ bool CheckGLShaderErrors()
 }
 
 // creates and returns a program object linked from vertex and fragment shaders
-GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader)
+GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader, GLuint tcsShader, GLuint tesShader)
 {
 	// allocate program object name
 	GLuint programObject = glCreateProgram();
@@ -119,6 +123,8 @@ GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader)
 	// attach provided shader objects to this program
 	if (vertexShader)   glAttachShader(programObject, vertexShader);
 	if (fragmentShader) glAttachShader(programObject, fragmentShader);
+	if (tcsShader) glAttachShader(programObject, tcsShader);
+	if (tesShader) glAttachShader(programObject, tesShader);
 
 	// try linking the program with given attachments
 	glLinkProgram(programObject);
@@ -139,13 +145,16 @@ GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader)
 	return programObject;
 }
 
-MyShader::MyShader(const std::string & vertex_filename, const std::string & fragment_filename)
+MyShader::MyShader(const std::string & vertex_filename, const std::string & fragment_filename, const std::string& tc_filename, const std::string& te_filename)
 	:
 	vertex(0),
 	fragment(0),
+	tcs(0),
+	tes(0),
 	program(0)
 {
-	InitializeShaders(this, vertex_filename, fragment_filename);
+	InitializeShaders(this, vertex_filename, fragment_filename, tc_filename, te_filename);
+	std::cout << (int)program;
 }
 
 void MyShader::Clear()

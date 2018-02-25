@@ -14,7 +14,8 @@ Scene::Scene(GLFWwindow* window)
 	:
 	window(window)
 {
-	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs");
+	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControl.glsl", "Shaders\\tessEval.glsl");
+	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControl.glsl", "Shaders\\tessEval.glsl");
 	
 }
 
