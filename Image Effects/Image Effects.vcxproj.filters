@@ -45,6 +45,9 @@
     <ClCompile Include="myWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BezierCurve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program.h">
@@ -71,6 +74,9 @@
     <ClInclude Include="myWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BezierCurve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\normal.fs" />
@@ -79,5 +85,9 @@
     <None Include="Shaders\sepia.fs" />
     <None Include="Shaders\edge.fs" />
     <None Include="Shaders\gaussian.fs" />
+    <None Include="Shaders\bc.fs" />
+    <None Include="Shaders\bc.vs" />
+    <None Include="Shaders\tessControl.glsl" />
+    <None Include="Shaders\tessEval.glsl" />
   </ItemGroup>
 </Project>

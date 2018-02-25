@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BezierCurve.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="keyboard.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BezierCurve.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="MyGeometry.h" />
@@ -153,12 +155,16 @@
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\bc.fs" />
+    <None Include="Shaders\bc.vs" />
     <None Include="Shaders\edge.fs" />
     <None Include="Shaders\gaussian.fs" />
     <None Include="Shaders\gray.fs" />
     <None Include="Shaders\normal.fs" />
     <None Include="Shaders\normal.vs" />
     <None Include="Shaders\sepia.fs" />
+    <None Include="Shaders\tessControl.glsl" />
+    <None Include="Shaders\tessEval.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

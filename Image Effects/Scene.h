@@ -6,6 +6,7 @@
 #include "MyShader.h"
 #include "Image.h"
 #include "keyboard.h"
+#include "BezierCurve.h"
 
 
 class Scene
@@ -20,6 +21,9 @@ private:
 	std::vector<MyShader> shaders;
 	std::vector<Image> images;
 	std::vector<glm::vec4> grays;
+	// temp
+	BezierCurve bc;
+
 	std::vector <float*> smat;
 	glm::vec2 curPos = { 0.0f, 0.0f };
 	glm::vec2 delta;
