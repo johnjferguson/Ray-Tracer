@@ -34,6 +34,11 @@ bool CheckGLErrors(const char* errorLocation)
 MyTexture::MyTexture() : textureID(0), target(0), width(0), height(0)
 	{}
 
+void MyTexture::Destroy()
+{
+	DestroyTexture(this);
+}
+
 bool InitializeTexture(MyTexture* texture, const char* filename, GLuint target)
 {
 	int numComponents;

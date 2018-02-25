@@ -14,6 +14,7 @@ struct MyTexture
 
 	// initialize object names to zero (OpenGL reserved value)
 	MyTexture();
+	void Destroy();
 };
 
 bool InitializeTexture(MyTexture* texture, const char* filename, GLuint target = GL_TEXTURE_2D);

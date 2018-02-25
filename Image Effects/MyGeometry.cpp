@@ -43,7 +43,7 @@ bool CheckGLErrors()
 	return error;
 }
 
-void MyGeometry::Clear()
+void MyGeometry::Destroy()
 {
 	DestroyGeometry(this);
 }

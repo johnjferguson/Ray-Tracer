@@ -11,6 +11,7 @@ class Image
 public:
 	Image(const std::string& filename);
 	void Draw() const;
+	void DestroyImage();
 private:
 	void Initialize();
 private:

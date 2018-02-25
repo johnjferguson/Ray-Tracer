@@ -19,7 +19,7 @@ struct MyGeometry
 	// initialize object names to zero (OpenGL reserved value)
 	MyGeometry() : VAO(0), EBO(0)
 	{}
-	void Clear();
+	void Destroy();
 };
 
 // deallocate geometry-related objects

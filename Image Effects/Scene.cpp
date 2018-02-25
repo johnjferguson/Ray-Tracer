@@ -11,6 +11,8 @@ Scene::~Scene()
 		DestroyShaders(&i);
 	for (auto& i : smat)
 		delete[] i;
+	for (auto& i : images)
+		i.DestroyImage();
 }
 
 Scene::Scene(GLFWwindow* window)

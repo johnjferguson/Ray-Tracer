@@ -15,7 +15,6 @@ public:
 	~Scene();
 	Scene(GLFWwindow* window);
 	void Render();
-	void Initialize();
 private:
 	GLFWwindow* window;
 	std::vector<MyShader> shaders;

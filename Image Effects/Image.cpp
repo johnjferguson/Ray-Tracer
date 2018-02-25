@@ -20,6 +20,12 @@ void Image::Draw() const
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
+void Image::DestroyImage()
+{
+	geometry.Destroy();
+	texture.Destroy();
+}
+
 void Image::Initialize()
 {
 	float wr, hr;
