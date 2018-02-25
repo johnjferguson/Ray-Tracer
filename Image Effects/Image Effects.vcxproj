@@ -164,7 +164,9 @@
     <None Include="Shaders\normal.vs" />
     <None Include="Shaders\sepia.fs" />
     <None Include="Shaders\tessControl.glsl" />
+    <None Include="Shaders\tessControlCubic.glsl" />
     <None Include="Shaders\tessEval.glsl" />
+    <None Include="Shaders\tessEvalCubic.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

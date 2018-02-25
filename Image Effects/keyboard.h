@@ -16,11 +16,5 @@ private:
 	static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	
 public:
-	static int curImage;
-	static int curEffect;
-	static float theta;
-	static float zoom;
-	static double x;
-	static double y;
-	static bool leftClickHold;
+	static int curScene;
 };

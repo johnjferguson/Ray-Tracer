@@ -2,9 +2,10 @@
 #include <cassert>
 #include "type_ptr.hpp"
 
-BezierCurve::BezierCurve(const std::vector<float>& vertices)
+BezierCurve::BezierCurve(const std::vector<float>& vertices, bool cubic)
 {
 	SetVertices(vertices);
+	isCubic = cubic;
 }
 
 
@@ -64,21 +65,24 @@ void BezierCurve::Draw(const GLuint& program) const
 	float* fsrt = (float*)glm::value_ptr(CreateTransMatrix());
 	glUniformMatrix4fv(glGetUniformLocation(program, "srt"), 1, false, fsrt);
 
-	glPatchParameteri(GL_PATCH_VERTICES, 3);
+	if (isCubic)
+		glPatchParameteri(GL_PATCH_VERTICES, 4);
+	else
+		glPatchParameteri(GL_PATCH_VERTICES, 3);
+
 	glBindVertexArray(geometry.VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, geometry.VBO);
 	glDrawArrays(GL_PATCHES, 0, vertices.size() / 2);
 
 	glBindVertexArray(0);
+	glUseProgram(0);
 }
 
-void BezierCurve::SetVertices(const std::vector<float>& vertices)
+void BezierCurve::SetVertices(const std::vector<float>& vertices, bool cubic)
 {
+	isCubic = cubic;
 	this->vertices = vertices;
 	InitializeGeometry(vertices);
 }
 
-void BezierCurve::SetIsCubic(bool tf)
-{
-	isCubic = tf;
-}
+

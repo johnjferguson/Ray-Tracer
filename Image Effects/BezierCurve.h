@@ -7,10 +7,9 @@ class BezierCurve
 {
 public:
 	BezierCurve() = default;
-	BezierCurve(const std::vector<float>& vertices);
+	BezierCurve(const std::vector<float>& vertices, bool cubic = false);
 	void Draw(const GLuint& program) const;
-	void SetVertices(const std::vector<float>& vertices);
-	void SetIsCubic(bool tf);
+	void SetVertices(const std::vector<float>& vertices, bool cubic = false);
 private:
 	void InitializeGeometry(const std::vector<float>& vertices);
 	glm::mat4 CreateTransMatrix() const;
@@ -18,5 +17,5 @@ private:
 	MyGeometry geometry;
 	std::vector<float> vertices;
 	bool isCubic = false;
-	float scale = 0.5f;
+	float scale = 0.1f;
 };

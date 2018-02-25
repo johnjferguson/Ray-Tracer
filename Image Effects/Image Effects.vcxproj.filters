@@ -89,5 +89,7 @@
     <None Include="Shaders\bc.vs" />
     <None Include="Shaders\tessControl.glsl" />
     <None Include="Shaders\tessEval.glsl" />
+    <None Include="Shaders\tessEvalCubic.glsl" />
+    <None Include="Shaders\tessControlCubic.glsl" />
   </ItemGroup>
 </Project>
