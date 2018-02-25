@@ -29,15 +29,9 @@ void main()
 
 	vec2 p0 = gl_in[0].gl_Position.xy;
 	vec2 p1 = gl_in[1].gl_Position.xy;
+	vec2 p2 = gl_in[2].gl_Position.xy;
 
-	//Forming basis from two points in line
-	vec2 bx = p1-p0;
-	//And line rotated 90 degrees
-	vec2 by = vec2(bx.y, -bx.x);
-
-	float cycles = 4.0;
-	//Equation for spiral from first assignment
-	vec2 position = u*cos(u*cycles*2.0*PI)*bx + u*sin(u*cycles*2.0*PI)*by + p0;
+	vec2 position = pow(1-u,2)*p0 + 2*u*(1-u)*p1 + pow(u,2)*p2;
 
 	gl_Position = vec4(position, 0, 1);
 

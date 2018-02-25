@@ -9,7 +9,7 @@
 
 //This variable must match the patch size set in c++ program with 
 //glPatchParameteri(GL_PATCH_VERTICES_VERTICES, n) 
-layout(vertices=2) out;
+layout(vertices=3) out;
 
 //Number of elements equal to patch size
 in vec3 tcColour[];		//From vertex shader
@@ -27,7 +27,7 @@ void main()
 	if(gl_InvocationID == 0)
 	{
 		gl_TessLevelOuter[0] = 1;		//Determines number of lines
-		gl_TessLevelOuter[1] = 64;		//Determines number of segments in line
+		gl_TessLevelOuter[1] = 100;	//Determines number of segments in line
 	}
 
 	//Passing information along to tessEval.glsl
