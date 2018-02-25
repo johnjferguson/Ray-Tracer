@@ -21,8 +21,8 @@ private:
 	std::vector<MyShader> shaders;
 	std::vector<Image> images;
 	std::vector<glm::vec4> grays;
-	// temp
-	BezierCurve bc;
+
+	BezierCurve scene1;
 
 	std::vector <float*> smat;
 	glm::vec2 curPos = { 0.0f, 0.0f };
