@@ -1,0 +1,27 @@
+// John Ferguson
+// id: 30032182
+// CPSC 453 Assignment 2
+#pragma once
+#include <vector>
+#include "MyShader.h"
+#include "Image.h"
+#include "keyboard.h"
+
+
+class Scene
+{
+public:
+	Scene() = default;
+	~Scene();
+	Scene(GLFWwindow* window);
+	void Render();
+	void Initialize();
+private:
+	GLFWwindow* window;
+	std::vector<MyShader> shaders;
+	std::vector<Image> images;
+	std::vector<glm::vec4> grays;
+	std::vector <float*> smat;
+	glm::vec2 curPos = { 0.0f, 0.0f };
+	glm::vec2 delta;
+};
