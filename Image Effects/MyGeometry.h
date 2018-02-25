@@ -14,6 +14,7 @@ struct MyGeometry
 	GLuint  VAO;
 	GLuint  VBO;
 	GLuint  EBO;
+	GLuint  CB;
 	GLuint	texture;
 	
 	// initialize object names to zero (OpenGL reserved value)
