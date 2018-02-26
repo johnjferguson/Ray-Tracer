@@ -1,6 +1,7 @@
 #include "BezierCurve.h"
 #include <cassert>
 #include "type_ptr.hpp"
+#include <iostream>
 
 BezierCurve::BezierCurve(const std::vector<float>& vertices, bool cubic)
 	:
@@ -42,6 +43,77 @@ void BezierCurve::InitializeGeometry(const std::vector<float>& vertices)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+void BezierCurve::InitializePointGeometry()
+{
+	assert(vertices.size() > 0);
+
+	float hh = 0.05f;
+	std::vector<glm::vec2> point_verts;
+	std::vector<glm::vec3> colors;
+
+	for (int i = 0; i < vertices.size(); i += 2)
+	{
+		// should have used vec2
+		point_verts.emplace_back(vertices[i], vertices[i + 1] + hh);
+		point_verts.emplace_back(vertices[i] + hh, vertices[i + 1] - hh);
+		point_verts.emplace_back(vertices[i] - hh, vertices[i + 1] - hh);
+	}
+
+	int npoints = isCubic ? 3 : 2;
+	for (int i = 0; i < point_verts.size() / 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (i % npoints == 0)
+				colors.emplace_back(1.0f, 0.0f, 0.0f);
+			else
+				colors.emplace_back(0.0f, 0.0f, 0.0f);
+		}
+	}
+
+	std::cout << std::endl << colors.size() << std::endl << point_verts.size();
+	
+	glGenBuffers(1, &pointGeometry.VBO);
+	glGenBuffers(1, &pointGeometry.CB);
+
+	glGenVertexArrays(1, &pointGeometry.VAO);
+	glBindVertexArray(pointGeometry.VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, pointGeometry.VBO);
+	glVertexAttribPointer(
+		0,					//Attribute index 
+		2, 					//# of components
+		GL_FLOAT, 			//Type of component
+		GL_FALSE, 			//Should be normalized?
+		sizeof(glm::vec2),	//Stride - can use 0 if tightly packed
+		0);					//Offset to first element
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, pointGeometry.CB);
+	glVertexAttribPointer(
+		1,					//Attribute index 
+		3, 					//# of components
+		GL_FLOAT, 			//Type of component
+		GL_FALSE, 			//Should be normalized?
+		sizeof(glm::vec3),	//Stride - can use 0 if tightly packed
+		0);					//Offset to first element
+	glEnableVertexAttribArray(1);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, pointGeometry.VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2)*point_verts.size(), point_verts.data(), GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ARRAY_BUFFER, pointGeometry.CB);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3)*colors.size(), colors.data(), GL_STATIC_DRAW);
+
+
+	std::cout << std::endl << point_verts.size() << std::endl;
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+}
+
 glm::mat4 BezierCurve::CreateTransMatrix() const
 {
 	glm::mat4  s = {
@@ -65,11 +137,9 @@ void BezierCurve::Draw(const GLuint& program, const GLuint& simpleProgram) const
 
 	glUseProgram(program);
 
-	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	//glClear(GL_COLOR_BUFFER_BIT);
-
 	float* fsrt = (float*)glm::value_ptr(CreateTransMatrix());
 	glUniformMatrix4fv(glGetUniformLocation(program, "srt"), 1, false, fsrt);
+	glUniform3f(glGetUniformLocation(program, "scolor"), 1.0f, 0.0f, 0.0f);
 
 	if (isCubic)
 		glPatchParameteri(GL_PATCH_VERTICES, 4);
@@ -80,10 +150,14 @@ void BezierCurve::Draw(const GLuint& program, const GLuint& simpleProgram) const
 	glBindBuffer(GL_ARRAY_BUFFER, geometry.VBO);
 	glDrawArrays(GL_PATCHES, 0, vertices.size() / 2);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	glUseProgram(0);
+	glUseProgram(simpleProgram);
+	glUniformMatrix4fv(glGetUniformLocation(simpleProgram, "srt"), 1, false, fsrt);
+	glUniform3f(glGetUniformLocation(simpleProgram, "scolor"), 0.0f, 0.0f, 1.0f);
 
+	glBindVertexArray(pointGeometry.VAO);
+	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 2 * 3 );
+
+	glBindVertexArray(0);
 }
 
 void BezierCurve::SetVertices(const std::vector<float>& vertices, bool cubic)
@@ -91,6 +165,7 @@ void BezierCurve::SetVertices(const std::vector<float>& vertices, bool cubic)
 	isCubic = cubic;
 	this->vertices = vertices;
 	InitializeGeometry(vertices);
+	InitializePointGeometry();
 }
 
 void BezierCurve::SetScale(float newScale)

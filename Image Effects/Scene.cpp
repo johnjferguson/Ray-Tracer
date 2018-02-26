@@ -30,7 +30,8 @@ Scene::Scene(GLFWwindow* window)
 	};
 
 	scene1a.SetVertices(s1a_vert);
-	scene1a.SetScale(0.6f);
+	//scene1a.SetScale(0.6f);
+	scene1a.SetScale(0.2f);
 	scene1a.SetOffset(glm::vec2(-0.15f, 0.0f));
 
 	std::vector<float> s1b_vert = {
@@ -49,15 +50,13 @@ Scene::Scene(GLFWwindow* window)
 
 void Scene::Render()
 {
-//	if (Keyboard::curScene == 0)
-	//	scene1a.Draw(shaders[0].program, shaders[2].program);
-	//else if (Keyboard::curScene == 1)
-	//	scene1b.Draw(shaders[1].program, shaders[2].program);
-
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	scene1b.Draw(shaders[1].program, shaders[2].program);
-	scene1a.Draw(shaders[0].program, shaders[2].program);
+	if (Keyboard::curScene == 0)
+		scene1a.Draw(shaders[0].program, shaders[2].program);
+	else if (Keyboard::curScene == 1)
+		scene1b.Draw(shaders[1].program, shaders[2].program);
+
 }
 

@@ -14,9 +14,11 @@ public:
 	void SetOffset(const glm::vec2& newOffset);
 private:
 	void InitializeGeometry(const std::vector<float>& vertices);
+	void InitializePointGeometry();
 	glm::mat4 CreateTransMatrix() const;
 private:
 	MyGeometry geometry;
+	MyGeometry pointGeometry;
 	std::vector<float> vertices;
 	bool isCubic = false;
 	float scale = 1.0f;

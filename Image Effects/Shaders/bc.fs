@@ -9,8 +9,10 @@
 // first output is mapped to the framebuffer's colour index by default
 out vec4 FragmentColour;
 
+uniform vec3 scolor;
+
 void main(void)
 {
     // write colour output without modification
-    FragmentColour = vec4(0.0,1.0, 0.0, 0);
+    FragmentColour = vec4(scolor, 1.0);
 }
