@@ -3,6 +3,8 @@
 #include "type_ptr.hpp"
 
 BezierCurve::BezierCurve(const std::vector<float>& vertices, bool cubic)
+	:
+	offset(0.0f,0.0f)
 {
 	SetVertices(vertices);
 	isCubic = cubic;
@@ -48,8 +50,13 @@ glm::mat4 BezierCurve::CreateTransMatrix() const
 		0             ,  0             ,  1, 0,
 		0             ,  0             ,  0, 1
 	};
-
-	return s;
+	glm::mat4  t = {
+		1,  0,  0,  offset.x,
+		0,  1,  0,  offset.y,
+		0,  0,  1,  0,
+		0,  0,  0,  1
+	};
+	return s*t;
 }
 
 void BezierCurve::Draw(const GLuint& program) const
@@ -83,6 +90,16 @@ void BezierCurve::SetVertices(const std::vector<float>& vertices, bool cubic)
 	isCubic = cubic;
 	this->vertices = vertices;
 	InitializeGeometry(vertices);
+}
+
+void BezierCurve::SetScale(float newScale)
+{
+	scale = newScale;
+}
+
+void BezierCurve::SetOffset(const glm::vec2& newOffset)
+{
+	offset = newOffset;
 }
 
 

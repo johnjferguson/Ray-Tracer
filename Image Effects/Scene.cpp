@@ -29,6 +29,8 @@ Scene::Scene(GLFWwindow* window)
 	};
 
 	scene1a.SetVertices(s1a_vert);
+	scene1a.SetScale(0.6f);
+	scene1a.SetOffset(glm::vec2(-0.15f, 0.0f));
 
 	std::vector<float> s1b_vert = {
 		1.0f, 1.0f, 4.0f, 0.0f, 6.0f, 2.0f, 9.0f, 1.0f,
@@ -39,7 +41,8 @@ Scene::Scene(GLFWwindow* window)
 	};
 
 	scene1b.SetVertices(s1b_vert, true);
-
+	scene1b.SetScale(0.23f);
+	scene1b.SetOffset(glm::vec2(-1.15f, -0.5f));
 }
 
 
