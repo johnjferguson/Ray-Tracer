@@ -59,16 +59,15 @@ glm::mat4 BezierCurve::CreateTransMatrix() const
 	return s*t;
 }
 
-void BezierCurve::Draw(const GLuint& program) const
+void BezierCurve::Draw(const GLuint& program, const GLuint& simpleProgram) const
 {
 	assert(vertices.size() > 0);
 
 	glUseProgram(program);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	//glClear(GL_COLOR_BUFFER_BIT);
 
-	// am I leaking memory here?
 	float* fsrt = (float*)glm::value_ptr(CreateTransMatrix());
 	glUniformMatrix4fv(glGetUniformLocation(program, "srt"), 1, false, fsrt);
 
@@ -80,9 +79,11 @@ void BezierCurve::Draw(const GLuint& program) const
 	glBindVertexArray(geometry.VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, geometry.VBO);
 	glDrawArrays(GL_PATCHES, 0, vertices.size() / 2);
-
+	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	glUseProgram(0);
+
 }
 
 void BezierCurve::SetVertices(const std::vector<float>& vertices, bool cubic)

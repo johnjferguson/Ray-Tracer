@@ -30,6 +30,24 @@ bool InitializeShaders(MyShader *shader, const std::string& vs, const std::strin
 	return CheckGLShaderErrors();
 }
 
+bool InitializeShaders(MyShader * shader, const std::string & vs, const std::string & fs)
+{
+	// load shader source from files
+	std::string vertexSource = LoadSource(vs.c_str());
+	std::string fragmentSource = LoadSource(fs.c_str());
+
+	if (vertexSource.empty() || fragmentSource.empty()) return 0;
+
+	// compile shader source into shader objects
+	shader->vertex = CompileShader(GL_VERTEX_SHADER, vertexSource);
+	shader->fragment = CompileShader(GL_FRAGMENT_SHADER, fragmentSource);
+
+	// link shader program
+	shader->program = LinkProgram(shader->vertex, shader->fragment);
+
+	return CheckGLShaderErrors();
+}
+
 // deallocate shader-related objects
 void DestroyShaders(MyShader *shader)
 {
@@ -145,6 +163,34 @@ GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader, GLuint tcsShader,
 	return programObject;
 }
 
+GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader)
+{
+	// allocate program object name
+	GLuint programObject = glCreateProgram();
+
+	// attach provided shader objects to this program
+	if (vertexShader)   glAttachShader(programObject, vertexShader);
+	if (fragmentShader) glAttachShader(programObject, fragmentShader);
+	
+	// try linking the program with given attachments
+	glLinkProgram(programObject);
+
+	// retrieve link status
+	GLint status;
+	glGetProgramiv(programObject, GL_LINK_STATUS, &status);
+	if (status == GL_FALSE)
+	{
+		GLint length;
+		glGetProgramiv(programObject, GL_INFO_LOG_LENGTH, &length);
+		std::string info(length, ' ');
+		glGetProgramInfoLog(programObject, info.length(), &length, &info[0]);
+		std::cout << "ERROR linking shader program:" << std::endl;
+		std::cout << info << std::endl;
+	}
+
+	return programObject;
+}
+
 MyShader::MyShader(const std::string & vertex_filename, const std::string & fragment_filename, const std::string& tc_filename, const std::string& te_filename)
 	:
 	vertex(0),
@@ -154,7 +200,15 @@ MyShader::MyShader(const std::string & vertex_filename, const std::string & frag
 	program(0)
 {
 	InitializeShaders(this, vertex_filename, fragment_filename, tc_filename, te_filename);
-	std::cout << (int)program;
+}
+
+MyShader::MyShader(const std::string & vertex_filename, const std::string & fragment_filename)
+	:
+	vertex(0),
+	fragment(0),
+	program(0)
+{
+	InitializeShaders(this, vertex_filename, fragment_filename);
 }
 
 void MyShader::Clear()

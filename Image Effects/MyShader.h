@@ -16,11 +16,13 @@ public:
 	GLuint  tes;
 	// initialize shader and program names to zero (OpenGL reserved value)
 	MyShader(const std::string & vertex_filename, const std::string & fragment_filename, const std::string& tc_filename, const std::string& te_filename);
+	MyShader(const std::string & vertex_filename, const std::string & fragment_filename);
 	void Clear();
 };
 
 // load, compile, and link shaders, returning true if successful
 bool InitializeShaders(MyShader *shader, const std::string& vs, const std::string& fs, const std::string& tc, const std::string& te);
+bool InitializeShaders(MyShader *shader, const std::string& vs, const std::string& fs);
 
 // deallocate shader-related objects
 void DestroyShaders(MyShader *shader);
@@ -35,3 +37,4 @@ bool CheckGLShaderErrors();
 
 // creates and returns a program object linked from vertex and fragment shaders
 GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader, GLuint tcsShader, GLuint tesShader);
+GLuint LinkProgram(GLuint vertexShader, GLuint fragmentShader);

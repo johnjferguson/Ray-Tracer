@@ -20,6 +20,7 @@ Scene::Scene(GLFWwindow* window)
 
 	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControl.glsl", "Shaders\\tessEval.glsl");
 	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControlCubic.glsl", "Shaders\\tessEvalCubic.glsl");
+	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs");
 
 	std::vector<float> s1a_vert = {
 		1.0f, 1.0f, 2.0f, -1.0f, 0.0f, -1.0f,
@@ -48,9 +49,15 @@ Scene::Scene(GLFWwindow* window)
 
 void Scene::Render()
 {
-	if (Keyboard::curScene == 0)
-		scene1a.Draw(shaders[0].program);
-	else if (Keyboard::curScene == 1)
-		scene1b.Draw(shaders[1].program);
+//	if (Keyboard::curScene == 0)
+	//	scene1a.Draw(shaders[0].program, shaders[2].program);
+	//else if (Keyboard::curScene == 1)
+	//	scene1b.Draw(shaders[1].program, shaders[2].program);
+
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	scene1b.Draw(shaders[1].program, shaders[2].program);
+	scene1a.Draw(shaders[0].program, shaders[2].program);
 }
 
