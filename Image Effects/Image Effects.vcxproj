@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BezierCurve.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="GlyphExtractor.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="keyboard.h" />

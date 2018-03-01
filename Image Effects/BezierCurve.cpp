@@ -154,8 +154,8 @@ void BezierCurve::Draw(const GLuint& program, const GLuint& simpleProgram) const
 	glUniformMatrix4fv(glGetUniformLocation(simpleProgram, "srt"), 1, false, fsrt);
 	glUniform3f(glGetUniformLocation(simpleProgram, "scolor"), 0.0f, 0.0f, 1.0f);
 
-	glBindVertexArray(pointGeometry.VAO);
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 2 * 3 );
+	//glBindVertexArray(pointGeometry.VAO);
+	//glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 2 * 3 );
 
 	glBindVertexArray(0);
 }
