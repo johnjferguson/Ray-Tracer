@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc;$(SolutionDir)Dependencies\glyph\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib;$(SolutionDir)Dependencies\glyph</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;freetype.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -89,11 +89,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc;$(SolutionDir)Dependencies\glyph\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib;$(SolutionDir)Dependencies\glyph</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;freetype.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -104,13 +104,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc;$(SolutionDir)Dependencies\glyph\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib;$(SolutionDir)Dependencies\glyph</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;freetype.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -121,18 +121,19 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw\include\GLFW;$(SolutionDir)Dependencies\glad\include\glad;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\glm;$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\glm\glm\gtc;$(SolutionDir)Dependencies\glyph\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw\lib;$(SolutionDir)Dependencies\glyph</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glfw3.lib;freetype.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BezierCurve.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="GlyphExtractor.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BezierCurve.h" />
+    <ClInclude Include="GlyphExtractor.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="MyGeometry.h" />
@@ -167,6 +169,11 @@
     <None Include="Shaders\tessControlCubic.glsl" />
     <None Include="Shaders\tessEval.glsl" />
     <None Include="Shaders\tessEvalCubic.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\AlexBrush-Regular.ttf" />
+    <Font Include="fonts\Lora-Regular.ttf" />
+    <Font Include="fonts\SourceSansPro-Bold.otf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

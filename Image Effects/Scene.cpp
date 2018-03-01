@@ -45,6 +45,8 @@ Scene::Scene(GLFWwindow* window)
 	scene1b.SetVertices(s1b_vert, true);
 	scene1b.SetScale(0.23f);
 	scene1b.SetOffset(glm::vec2(-1.15f, -0.5f));
+
+	//ge.LoadFontFile("fonts\\SourceSansPro-Bold.otf");
 }
 
 

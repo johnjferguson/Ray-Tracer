@@ -48,6 +48,9 @@
     <ClCompile Include="BezierCurve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GlyphExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program.h">
@@ -77,6 +80,9 @@
     <ClInclude Include="BezierCurve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GlyphExtractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\normal.fs" />
@@ -91,5 +97,16 @@
     <None Include="Shaders\tessEval.glsl" />
     <None Include="Shaders\tessEvalCubic.glsl" />
     <None Include="Shaders\tessControlCubic.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\Lora-Regular.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+    <Font Include="fonts\SourceSansPro-Bold.otf">
+      <Filter>Resource Files</Filter>
+    </Font>
+    <Font Include="fonts\AlexBrush-Regular.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>

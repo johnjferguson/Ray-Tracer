@@ -7,6 +7,7 @@
 #include "Image.h"
 #include "keyboard.h"
 #include "BezierCurve.h"
+//#include "GlyphExtractor.h"
 
 
 class Scene
@@ -24,6 +25,9 @@ private:
 
 	BezierCurve scene1a;
 	BezierCurve scene1b;
+	BezierCurve scene2a;
+
+	//GlyphExtractor ge;
 
 	std::vector <float*> smat;
 	glm::vec2 curPos = { 0.0f, 0.0f };
