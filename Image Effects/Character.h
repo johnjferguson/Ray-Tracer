@@ -9,6 +9,10 @@ class Character
 {
 public:
 	Character(int c, const Font& font, const glm::vec3& color, const Shaders& shaders);
+	void SetPosition(const glm::vec2 new_pos);
+	const glm::vec2& GetPosition() const;
+	void SetScale(float new_scale);
+	float GetAdvance() const;
 	void Draw() const;
 private:
 	void LoadGlyph(int c, const MyGlyph& glyph);
@@ -20,6 +24,10 @@ private:
 	glm::vec3 color;
 	const Font& font;
 	const Shaders& shaders;
+
+	float advance;
+	float scale = 1.0f;
+	glm::vec2 pos = { 0.0f, 0.0f };
 };
 
 glm::mat4 CreateTransMatrix(float scale, glm::vec2 offset);

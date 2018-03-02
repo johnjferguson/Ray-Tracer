@@ -144,6 +144,7 @@
     <ClCompile Include="myWindow.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="TextField.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="myWindow.h" />
     <ClInclude Include="program.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="TextField.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>

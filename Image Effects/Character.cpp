@@ -10,12 +10,32 @@ Character::Character(int c, const Font & font, const glm::vec3 & color, const Sh
 	LoadGlyph(c, font.GetGlyph(c));
 }
 
+void Character::SetPosition(const glm::vec2 new_pos)
+{
+	pos = new_pos;
+}
+
+const glm::vec2 & Character::GetPosition() const
+{
+	return pos;
+}
+
+void Character::SetScale(float new_scale)
+{
+	scale = new_scale;
+}
+
+float Character::GetAdvance() const
+{
+	return advance*scale;
+}
+
 void Character::Draw() const
 {
 	glUseProgram(shaders.shaders[2].program);
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 
-	float* fsrt = (float*)glm::value_ptr(CreateTransMatrix(1.0f, { 0.0f, 0.0f }));
+	float* fsrt = (float*)glm::value_ptr(CreateTransMatrix(scale, pos));
 	glUniformMatrix4fv(glGetUniformLocation(shaders.shaders[2].program, "srt"), 1, false, fsrt);
 	glUniform3f(glGetUniformLocation(shaders.shaders[2].program, "scolor"), 0.0f, 1.0f, 0.0f);
 
@@ -36,6 +56,8 @@ void Character::Draw() const
 
 void Character::LoadGlyph(int c, const MyGlyph & glyph)
 {
+	advance = glyph.advance;
+
 	std::vector<glm::vec2> lines, quad, cubic;
 
 	for (const auto& contour : glyph.contours)

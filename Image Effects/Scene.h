@@ -10,6 +10,7 @@
 #include "GlyphExtractor.h"
 #include "Font.h"
 #include "Character.h"
+#include "TextField.h"
 
 
 class Scene
@@ -28,10 +29,10 @@ private:
 	Font sanspro = Font("fonts\\SourceSansPro-Bold.otf");
 	Character char_a;
 
+	TextField tf;
+
 	BezierCurve scene1a;
 	BezierCurve scene1b;
-	BezierCurve scene2a;
-	BezierCurve scene2b;
 
 	std::vector <float*> smat;
 	glm::vec2 curPos = { 0.0f, 0.0f };

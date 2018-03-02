@@ -13,7 +13,8 @@ Scene::~Scene()
 Scene::Scene(GLFWwindow* window)
 	:
 	window(window),
-	char_a('P', sanspro, {1.0f, 0.0f, 0.0f}, s)
+	char_a('P', sanspro, {1.0f, 0.0f, 0.0f}, s),
+	tf(sanspro, s, "John Ferguson")
 {
 	// not sure what this stuff does
 	glfwWindowHint(GLFW_SAMPLES, 4);
@@ -43,6 +44,9 @@ Scene::Scene(GLFWwindow* window)
 	scene1b.SetScale(0.23f);
 	scene1b.SetOffset(glm::vec2(-1.15f, -0.5f));
 
+	tf.SetPosition(glm::vec2{ -1.0f, -0.5f });
+	tf.SetScale(0.2f);
+
 }
 
 
@@ -52,12 +56,13 @@ void Scene::Render()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	if (Keyboard::curScene == 0)
-		scene1a.Draw(s.shaders[1].program, s.shaders[0].program);
-	else if (Keyboard::curScene == 1)
-		scene1b.Draw(s.shaders[2].program, s.shaders[0].program);
+	//if (Keyboard::curScene == 0)
+		//scene1a.Draw(s.shaders[1].program, s.shaders[0].program);
+	//else if (Keyboard::curScene == 1)
+		//scene1b.Draw(s.shaders[2].program, s.shaders[0].program);
 
-	char_a.Draw();
+	//char_a.Draw();
+	tf.Draw();
 
 }
 
