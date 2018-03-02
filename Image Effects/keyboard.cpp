@@ -5,6 +5,7 @@
 #include <iostream>
 
 int Keyboard::curScene = 0;
+int Keyboard::fontNumber = 0;
 
 Keyboard::Keyboard(GLFWwindow * window)
 {
@@ -26,6 +27,10 @@ void Keyboard::KeyCallback(GLFWwindow * window, int key, int scancode, int actio
 		Keyboard::curScene = 0;
 	if (key == GLFW_KEY_2 && action == GLFW_PRESS)
 		Keyboard::curScene = 1;
+	if (key == GLFW_KEY_3 && action == GLFW_PRESS)
+		Keyboard::curScene = 2;
+	if (key == GLFW_KEY_4 && action == GLFW_PRESS)
+		Keyboard::curScene = 3;
 	
 }
 
@@ -37,6 +42,7 @@ void Keyboard::mouse_button_callback(GLFWwindow * window, int button, int action
 {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
+		Keyboard::fontNumber = (Keyboard::fontNumber + 1) % 3;
 	}
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
 	{

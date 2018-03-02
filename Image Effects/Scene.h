@@ -27,9 +27,22 @@ private:
 	std::vector<glm::vec4> grays;
 	
 	Font sanspro = Font("fonts\\SourceSansPro-Bold.otf");
-	Character char_a;
+	Font lora = Font("fonts\\Lora-Regular.ttf");
+	Font db = Font("fonts\\20db.otf");
 
-	TextField tf;
+	Font alex = Font("fonts\\AlexBrush-Regular.ttf");
+	Font incon = Font("fonts\\Inconsolata.otf");
+	Font ack = Font("fonts\\Acknowledgement.otf");
+
+	
+
+	TextField s2f1;
+	TextField s2f2;
+	TextField s2f3;
+
+	TextField s3f1;
+	TextField s3f2;
+	TextField s3f3;
 
 	BezierCurve scene1a;
 	BezierCurve scene1b;

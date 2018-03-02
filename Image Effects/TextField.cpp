@@ -8,7 +8,7 @@ TextField::TextField(const Font & font, const Shaders & shaders, const std::stri
 {
 	for (const auto& c : str)
 	{
-		Character letter(c, font, { 1.0f,0.0f,1.0f }, shaders);
+		Character letter(c, font, color, shaders);
 		letter.SetPosition(right_position);
 		letter.SetScale(scale);
 		right_position = right_position + glm::vec2(letter.GetAdvance(), 0.0f);
@@ -30,6 +30,11 @@ void TextField::SetPosition(const glm::vec2& new_pos)
 	}
 }
 
+float TextField::GetWidth() const
+{
+	return right_position.x - left_position.x;
+}
+
 void TextField::SetScale(float new_scale)
 {
 	if (new_scale != scale)
@@ -42,6 +47,14 @@ void TextField::SetScale(float new_scale)
 			right_position = right_position + glm::vec2(t.GetAdvance(), 0.0f);
 		}
 	}
+}
+
+void TextField::SetColor(const glm::vec3 & new_color)
+{
+	color = new_color;
+
+	for (auto& c : text)
+		c.SetColor(new_color);
 }
 
 void TextField::SetText(const std::string & str)

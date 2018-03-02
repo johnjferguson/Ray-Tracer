@@ -25,6 +25,11 @@ void Character::SetScale(float new_scale)
 	scale = new_scale;
 }
 
+void Character::SetColor(glm::vec3 new_color)
+{
+	color = new_color;
+}
+
 float Character::GetAdvance() const
 {
 	return advance*scale;
@@ -37,16 +42,26 @@ void Character::Draw() const
 
 	float* fsrt = (float*)glm::value_ptr(CreateTransMatrix(scale, pos));
 	glUniformMatrix4fv(glGetUniformLocation(shaders.shaders[2].program, "srt"), 1, false, fsrt);
-	glUniform3f(glGetUniformLocation(shaders.shaders[2].program, "scolor"), 0.0f, 1.0f, 0.0f);
+	glUniform3f(glGetUniformLocation(shaders.shaders[2].program, "scolor"), color[0], color[1], color[2]);
 
 	glBindVertexArray(cubic_geo.VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, cubic_geo.VBO);
 	glDrawArrays(GL_PATCHES, 0, cubic_geo.elementCount);
 
+	glUseProgram(shaders.shaders[1].program);
+	glPatchParameteri(GL_PATCH_VERTICES, 3);
+
+	glUniformMatrix4fv(glGetUniformLocation(shaders.shaders[1].program, "srt"), 1, false, fsrt);
+	glUniform3f(glGetUniformLocation(shaders.shaders[1].program, "scolor"), color[0], color[1], color[2]);
+
+	glBindVertexArray(quad_geo.VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, quad_geo.VBO);
+	glDrawArrays(GL_PATCHES, 0, quad_geo.elementCount);
+
 	glUseProgram(shaders.shaders[0].program);
 
 	glUniformMatrix4fv(glGetUniformLocation(shaders.shaders[0].program, "srt"), 1, false, fsrt);
-	glUniform3f(glGetUniformLocation(shaders.shaders[0].program, "scolor"), 0.0f, 1.0f, 0.0f);
+	glUniform3f(glGetUniformLocation(shaders.shaders[0].program, "scolor"), color[0], color[1], color[2]);
 
 	glBindVertexArray(line_geo.VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, line_geo.VBO);

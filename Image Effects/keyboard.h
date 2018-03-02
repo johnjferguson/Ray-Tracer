@@ -17,4 +17,5 @@ private:
 	
 public:
 	static int curScene;
+	static int fontNumber;
 };

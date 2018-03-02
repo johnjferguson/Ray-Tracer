@@ -12,6 +12,7 @@ public:
 	void SetPosition(const glm::vec2 new_pos);
 	const glm::vec2& GetPosition() const;
 	void SetScale(float new_scale);
+	void SetColor(glm::vec3 new_color);
 	float GetAdvance() const;
 	void Draw() const;
 private:
