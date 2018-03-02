@@ -68,11 +68,11 @@ class GlyphExtractor
 
     // private methods to print font/glyph info, for debugging
     void PrintFontInformation() const;
-    void PrintGlyphInformation(int character) const;
 
 public:
     GlyphExtractor();
 
+    void PrintGlyphInformation(int character) const;
     // call this method first to load a font file
     bool LoadFontFile(const std::string &filename);
 

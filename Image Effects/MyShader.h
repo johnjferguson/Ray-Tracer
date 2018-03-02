@@ -1,6 +1,7 @@
 
 #pragma once
 #include <string>
+#include <vector>
 
 #include "glad.h"
 #include "glfw3.h"
@@ -18,6 +19,15 @@ public:
 	MyShader(const std::string & vertex_filename, const std::string & fragment_filename, const std::string& tc_filename, const std::string& te_filename);
 	MyShader(const std::string & vertex_filename, const std::string & fragment_filename);
 	void Clear();
+};
+
+struct Shaders
+{
+	std::vector<MyShader> shaders = {
+		MyShader("Shaders\\bc.vs", "Shaders\\bc.fs"),
+		MyShader("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControl.glsl", "Shaders\\tessEval.glsl"),
+		MyShader("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControlCubic.glsl", "Shaders\\tessEvalCubic.glsl")
+	};
 };
 
 // load, compile, and link shaders, returning true if successful

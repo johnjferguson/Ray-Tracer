@@ -3,6 +3,7 @@
 // CPSC 453 Assignment 1
 #pragma once
 #include <iostream>
+#include <vector>
 #include "glm.hpp"
 #include "glad.h"
 #include "glfw3.h"
@@ -10,7 +11,8 @@
 // Functions to set up OpenGL buffers for storing geometry data
 struct MyGeometry
 {
-	// OpenGL names for array buffer objects, vertex array object
+	int elementCount;
+
 	GLuint  VAO;
 	GLuint  VBO;
 	GLuint  EBO;
@@ -22,6 +24,10 @@ struct MyGeometry
 	{}
 	void Destroy();
 };
+
+bool InitializeVAO(MyGeometry *geometry);
+
+bool LoadGeometry(MyGeometry *geometry, const std::vector<glm::vec2>& vertices, int elementCount);
 
 // deallocate geometry-related objects
 void DestroyGeometry(MyGeometry *geometry);

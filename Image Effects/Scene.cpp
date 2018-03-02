@@ -12,15 +12,12 @@ Scene::~Scene()
 
 Scene::Scene(GLFWwindow* window)
 	:
-	window(window)
+	window(window),
+	char_a('P', sanspro, {1.0f, 0.0f, 0.0f}, s)
 {
 	// not sure what this stuff does
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glPointSize(4);
-
-	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControl.glsl", "Shaders\\tessEval.glsl");
-	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs", "Shaders\\tessControlCubic.glsl", "Shaders\\tessEvalCubic.glsl");
-	shaders.emplace_back("Shaders\\bc.vs", "Shaders\\bc.fs");
 
 	std::vector<float> s1a_vert = {
 		1.0f, 1.0f, 2.0f, -1.0f, 0.0f, -1.0f,
@@ -46,45 +43,6 @@ Scene::Scene(GLFWwindow* window)
 	scene1b.SetScale(0.23f);
 	scene1b.SetOffset(glm::vec2(-1.15f, -0.5f));
 
-	ge.LoadFontFile("fonts\\SourceSansPro-Bold.otf");
-
-	MyGlyph mg = ge.ExtractGlyph('a');
-
-	std::cout << "\nsize -------> " << mg.contours.size() << std::endl;
-
-	std::vector<float> vf;
-	for (auto& i : mg.contours[0])
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			if (i.degree == 3)
-			{
-				vf.push_back(i.x[j]);
-				vf.push_back(i.y[j]);
-			}
-			printf("%6.4lf, %6.4lf, %2i\n", i.x[j], i.y[j], i.degree);
-		}
-		std::cout << "--------\n";
-	}
-	std::cout << ")000000000000000000000000\n";
-	std::vector<float> vf1;
-	for (auto& i : mg.contours[1])
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			if (i.degree == 3)
-			{
-				vf1.push_back(i.x[j]);
-				vf1.push_back(i.y[j]);
-			}
-			printf("%6.4lf, %6.4lf, %2i\n", i.x[j], i.y[j], i.degree);
-		}
-		std::cout << "--------\n";
-	}
-
-
-	scene2a.SetVertices(std::vector<float>(vf.begin(), vf.end()), true);
-	scene2b.SetVertices(vf1, true);
 }
 
 
@@ -95,12 +53,11 @@ void Scene::Render()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	if (Keyboard::curScene == 0)
-		scene1a.Draw(shaders[0].program, shaders[2].program);
+		scene1a.Draw(s.shaders[1].program, s.shaders[0].program);
 	else if (Keyboard::curScene == 1)
-	{
-		scene2a.Draw(shaders[1].program, shaders[2].program);
-		scene2b.Draw(shaders[1].program, shaders[2].program);
-	}
+		scene1b.Draw(s.shaders[2].program, s.shaders[0].program);
+
+	char_a.Draw();
 
 }
 

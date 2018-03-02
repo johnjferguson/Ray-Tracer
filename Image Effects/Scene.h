@@ -8,6 +8,8 @@
 #include "keyboard.h"
 #include "BezierCurve.h"
 #include "GlyphExtractor.h"
+#include "Font.h"
+#include "Character.h"
 
 
 class Scene
@@ -19,16 +21,17 @@ public:
 	void Render();
 private:
 	GLFWwindow* window;
-	std::vector<MyShader> shaders;
+	Shaders s;
 	std::vector<Image> images;
 	std::vector<glm::vec4> grays;
+	
+	Font sanspro = Font("fonts\\SourceSansPro-Bold.otf");
+	Character char_a;
 
 	BezierCurve scene1a;
 	BezierCurve scene1b;
 	BezierCurve scene2a;
 	BezierCurve scene2b;
-
-	GlyphExtractor ge;
 
 	std::vector <float*> smat;
 	glm::vec2 curPos = { 0.0f, 0.0f };
