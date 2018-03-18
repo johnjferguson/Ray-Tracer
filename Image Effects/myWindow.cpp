@@ -1,6 +1,7 @@
 #include "myWindow.h"
 #include <iostream>
 #include <string>
+#define NOMINMAX
 
 myWindow::myWindow()
 {

@@ -12,6 +12,7 @@
 #include "Character.h"
 #include "TextField.h"
 #include "FrameTimer.h"
+#include "imagebuffer.h"
 
 
 class Scene
@@ -25,6 +26,8 @@ public:
 private:
 	GLFWwindow* window;
 	Shaders s;
+
+	ImageBuffer ib;
 
 	FrameTimer ft;
 };
