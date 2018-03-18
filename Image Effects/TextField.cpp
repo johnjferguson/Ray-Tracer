@@ -25,9 +25,14 @@ void TextField::SetPosition(const glm::vec2& new_pos)
 			t.SetPosition(t.GetPosition() + new_pos - left_position);
 		}
 
-		left_position = new_pos;
 		right_position = right_position + new_pos - left_position;
+		left_position = new_pos;
 	}
+}
+
+const glm::vec2& TextField::GetPosition() const
+{
+	return left_position;
 }
 
 float TextField::GetWidth() const

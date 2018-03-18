@@ -7,6 +7,7 @@ class TextField
 public:
 	TextField(const Font& font, const Shaders& shaders, const std::string& str = "");
 	void SetPosition(const glm::vec2& new_pos);
+	const glm::vec2& GetPosition() const;
 	float GetWidth() const;
 	void SetScale(float new_scale);
 	void SetColor(const glm::vec3& new_color);

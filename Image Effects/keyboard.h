@@ -18,4 +18,5 @@ private:
 public:
 	static int curScene;
 	static int fontNumber;
+	static float speed;
 };

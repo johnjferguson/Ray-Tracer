@@ -1,11 +1,13 @@
 // John Ferguson
 // id: 30032182
-// CPSC 453 Assignment 2
+// CPSC 453 Assignment 3
 #include "keyboard.h"
 #include <iostream>
 
 int Keyboard::curScene = 0;
 int Keyboard::fontNumber = 0;
+float Keyboard::speed = 0.5f;
+
 
 Keyboard::Keyboard(GLFWwindow * window)
 {
@@ -36,6 +38,12 @@ void Keyboard::KeyCallback(GLFWwindow * window, int key, int scancode, int actio
 
 void Keyboard::scroll_callback(GLFWwindow * window, double xoffset, double yoffset)
 {
+	Keyboard::speed += yoffset * 0.1f;
+
+	if (Keyboard::speed < 0.0f)
+		Keyboard::speed = 0.0f;
+	if (Keyboard::speed > 4.0f)
+		Keyboard::speed = 4.0f;
 }
 
 void Keyboard::mouse_button_callback(GLFWwindow * window, int button, int action, int mods)

@@ -1,8 +1,8 @@
 john ferguson
 id: 30032182
-CPSC 453 assignment 2
+CPSC 453 assignment 3
 
-USED 2 LATE DAYS
+USED 1 LATE DAYS last one :(
 
 OPERATING SYSTEM: Windows
 IED:              Virtual Studio
@@ -10,8 +10,7 @@ IED:              Virtual Studio
 compiled on release using x86
 
 CONTROLS:
-- UP and DOWN keys to change PICTURES
-- LEFT and RIGHT keys to change EFFECTS
-- 'q' and 'e' keys to rotate
-- click and drag to move
-- mouse scroll wheel to zoom
+- 1,2,3,4 BUTTONS to change SCENE
+- LEFT CLICK to change FONT (on font scenes)
+- MOUSE SCROLL WHEEL to change SPEED
+-
