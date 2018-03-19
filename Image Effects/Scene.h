@@ -6,13 +6,10 @@
 #include "MyShader.h"
 #include "Image.h"
 #include "keyboard.h"
-#include "BezierCurve.h"
-#include "GlyphExtractor.h"
-#include "Font.h"
-#include "Character.h"
-#include "TextField.h"
 #include "FrameTimer.h"
 #include "imagebuffer.h"
+#include "object.h"
+
 
 
 class Scene
@@ -28,6 +25,7 @@ private:
 	Shaders s;
 
 	ImageBuffer ib;
+	Circle circle = Circle(1.0f, { 0.0f, 0.0f, -3.0f });
 
 	FrameTimer ft;
 };

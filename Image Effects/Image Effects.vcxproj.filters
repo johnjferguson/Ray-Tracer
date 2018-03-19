@@ -116,6 +116,9 @@
     <ClInclude Include="glcorearb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\normal.fs" />

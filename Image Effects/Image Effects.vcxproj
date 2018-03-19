@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -148,6 +148,7 @@
     <ClCompile Include="MyGeometry.cpp" />
     <ClCompile Include="MyShader.cpp" />
     <ClCompile Include="myWindow.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextField.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="MyGeometry.h" />
     <ClInclude Include="MyShader.h" />
     <ClInclude Include="myWindow.h" />
+    <ClInclude Include="object.h" />
     <ClInclude Include="program.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="TextField.h" />
